@@ -15,7 +15,12 @@ const routes: Routes = [
   {
     path: 'detail-fecha/:fechaId',
     loadChildren: () => import('./detail-fecha/detail-fecha.module').then( m => m.DetailFechaPageModule)
+  },
+  {
+    path: 'edit-fecha/:fechaId',
+    loadChildren: () => import('./edit-fecha/edit-fecha.module').then( m => m.EditFechaPageModule)
   }
+
 ];
 
 @NgModule({

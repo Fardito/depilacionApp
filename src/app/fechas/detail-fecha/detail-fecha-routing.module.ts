@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: DetailFechaPage
+  },  {
+    path: 'new-turno',
+    loadChildren: () => import('./new-turno/new-turno.module').then( m => m.NewTurnoPageModule)
   }
+
 ];
 
 @NgModule({

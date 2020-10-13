@@ -1,33 +1,60 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/fechas"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Fecha: {{ fechaActual.date | date }} </ion-title>
-    <ion-buttons slot="primary">
-      <ion-button>
-        <ion-icon name="pencil"></ion-icon>
-      </ion-button>
-      <ion-button>
-        <ion-icon name="trash"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/fechas"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Fecha: {{ fechaActual.date | date }} </ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="onEditFecha()">
+                <ion-icon name="pencil"></ion-icon>
+            </ion-button>
+            <ion-button (click)="onDeleteFecha(fechaActual.id)">
+                <ion-icon name="trash"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6">
-        <div class="ion-text-center">
-          <h4>Horario</h4>
-        </div>
-      </ion-col>
-      <ion-col size="6">
-        <div class="ion-text-center">
-          <h4>Nombre</h4>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-button (click)="onAddTurno()">Nuevo turno</ion-button>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="3">
+                <div class="ion-text-center">
+                    <h4>Horario</h4>
+                </div>
+            </ion-col>
+            <ion-col size="6">
+                <div class="ion-text-center">
+                    <h4>Nombre</h4>
+                </div>
+            </ion-col>
+            <ion-col size="3">
+                <div class="ion-text-center">
+                    <h4>Precio</h4>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+            <ion-reorder>
+                <ion-item>
+                    <ion-label>
+                        Clienta 1 : 9:00
+                    </ion-label>
+                </ion-item>
+            </ion-reorder>
+            <ion-reorder>
+                <ion-item>
+                    <ion-label>
+                        Clienta 2 : 8:30
+                    </ion-label>
+                </ion-item>
+            </ion-reorder>
+        </ion-reorder-group>
+
+    </ion-grid>
 </ion-content>
