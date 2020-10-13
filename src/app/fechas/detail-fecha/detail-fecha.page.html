@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="/fechas"></ion-back-button>
         </ion-buttons>
-        <ion-title>Fecha: {{ fechaActual.date | date }} </ion-title>
+        <ion-title>{{ fechaActual.date | date }} </ion-title>
         <ion-buttons slot="primary">
             <ion-button (click)="onEditFecha()">
                 <ion-icon name="pencil"></ion-icon>

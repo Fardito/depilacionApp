@@ -1,13 +1,52 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-back-button defaultHref="/fechas"></ion-back-button>
-        </ion-buttons>
-        <ion-title>Nuevo Turno</ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/fechas"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Nuevo Turno</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <h1>Hacer formulario</h1>
-    <h2>hora/cliente/precio</h2>
+  <form (ngSubmit)="onAddTurno()" #f="ngForm">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Horario del Turno</ion-label>
+            <ion-datetime
+              display-format="HH:mm"
+              picker-format="HH:mm"
+              name="fecha-turno"
+              ngModel
+              required
+            ></ion-datetime>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Cliente</ion-label>
+            <ion-select interface="action-sheet" ngModel name="cliente" required>
+              <ion-select-option *ngFor="let client of loadedClients">{{ client.firstName }} {{ client.lastName }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Precio</ion-label>
+            <ion-input type="number" ngModel name="precio" required></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" expand="full" [disabled]="!f.valid">Ok</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
