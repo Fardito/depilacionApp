@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AlertController, IonReorderGroup, NavController } from "@ionic/angular";
 import { ItemReorderEventDetail } from '@ionic/core';
 import { Subscription } from "rxjs";
-import { Cliente } from "src/app/clientes/clientes.model";
 import { Fecha } from "../fechas.model";
 import { FechasService } from "../fechas.service";
+import { Turno } from './turno.model';
+import { TurnoService } from './turno.service';
 
 @Component({
   selector: "app-detail-fecha",
@@ -14,8 +15,9 @@ import { FechasService } from "../fechas.service";
 })
 export class DetailFechaPage implements OnInit, OnDestroy {
   fechaActual: Fecha;
-  loadedClients: Cliente[];
   fechaSub: Subscription;
+  loadedTurnos: Turno[];
+  turnoSub: Subscription;
 
   @ViewChild(IonReorderGroup) reorderGroup: IonReorderGroup;
 
@@ -24,7 +26,8 @@ export class DetailFechaPage implements OnInit, OnDestroy {
     private navCtrl: NavController,
     private fechaService: FechasService,
     private router: Router,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private turnoService: TurnoService
   ) {}
 
   ngOnInit() {
@@ -39,6 +42,10 @@ export class DetailFechaPage implements OnInit, OnDestroy {
           this.fechaActual = fecha;
         });
     });
+
+    this.turnoSub = this.turnoService.turnos.subscribe( turnos => {
+      this.loadedTurnos = turnos;
+    })
   }
 
   onEditFecha(){
@@ -84,6 +91,9 @@ export class DetailFechaPage implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.fechaSub) {
       this.fechaSub.unsubscribe();
+    }
+    if(this.turnoSub){
+      this.turnoSub.unsubscribe();
     }
   }
 }

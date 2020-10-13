@@ -39,22 +39,17 @@
                 </div>
             </ion-col>
         </ion-row>
-        <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
-            <ion-reorder>
-                <ion-item>
-                    <ion-label>
-                        Clienta 1 : 9:00
-                    </ion-label>
-                </ion-item>
-            </ion-reorder>
-            <ion-reorder>
-                <ion-item>
-                    <ion-label>
-                        Clienta 2 : 8:30
-                    </ion-label>
-                </ion-item>
-            </ion-reorder>
-        </ion-reorder-group>
+        <ion-row>
+            <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+                <ion-reorder *ngFor="let turno of loadedTurnos">
+                    <ion-item>
+                        <ion-label>
+                            {{ turno.hora }} {{ turno.nombre }} {{ turno.precio }}
+                        </ion-label>
+                    </ion-item>
+                </ion-reorder>
+            </ion-reorder-group>
+        </ion-row>
 
     </ion-grid>
 </ion-content>
