@@ -9,6 +9,7 @@ import { Cliente } from './clientes.model';
 export class ClientesService {
 
   private _clientes = new BehaviorSubject<Cliente[]>([
+    new Cliente('asd','Fede','Suarez','1')
   ]);
   
 

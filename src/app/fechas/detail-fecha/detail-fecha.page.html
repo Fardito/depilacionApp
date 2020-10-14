@@ -15,7 +15,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
     <ion-grid>
         <ion-row>
             <ion-col>
@@ -23,33 +23,41 @@
             </ion-col>
         </ion-row>
         <ion-row>
+            <ion-col>
+                <h1>Turnos</h1>
+            </ion-col>
+        </ion-row>
+        <!-- <ion-row *ngFor="let turno of loadedTurnos">
             <ion-col size="3">
                 <div class="ion-text-center">
-                    <h4>Horario</h4>
+                 
+                    <h4>{{ turno.hora | date:'HH:mm' }}</h4>
                 </div>
             </ion-col>
             <ion-col size="6">
                 <div class="ion-text-center">
-                    <h4>Nombre</h4>
+                    
+                    <h4> {{ turno.nombre }}</h4>
                 </div>
             </ion-col>
             <ion-col size="3">
                 <div class="ion-text-center">
-                    <h4>Precio</h4>
+                    
+                    <h4> ${{ turno.precio }}</h4>
                 </div>
             </ion-col>
-        </ion-row>
-        <ion-row>
+        </ion-row> -->
+        
             <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
                 <ion-reorder *ngFor="let turno of loadedTurnos">
                     <ion-item>
-                        <ion-label>
-                            {{ turno.hora }} {{ turno.nombre }} {{ turno.precio }}
-                        </ion-label>
+                            
+                                <h4>{{ turno.hora | date:'HH:mm' }}</h4>
+                                <h4>{{ turno.nombre }}</h4>
+                                <h4>${{ turno.precio }}</h4>
+                            
                     </ion-item>
                 </ion-reorder>
             </ion-reorder-group>
-        </ion-row>
-
     </ion-grid>
 </ion-content>
