@@ -1,63 +1,56 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-back-button defaultHref="/fechas"></ion-back-button>
-        </ion-buttons>
-        <ion-title>{{ fechaActual.date | date }} </ion-title>
-        <ion-buttons slot="primary">
-            <ion-button (click)="onEditFecha()">
-                <ion-icon name="pencil"></ion-icon>
-            </ion-button>
-            <ion-button (click)="onDeleteFecha(fechaActual.id)">
-                <ion-icon name="trash"></ion-icon>
-            </ion-button>
-        </ion-buttons>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/fechas"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title> Turnos: {{ fechaActual.date | date }} </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onEditFecha()">
+        <ion-icon name="pencil"></ion-icon>
+      </ion-button>
+      <ion-button (click)="onDeleteFecha(fechaActual.id)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
-    <ion-grid>
-        <ion-row>
-            <ion-col>
-                <ion-button (click)="onAddTurno()">Nuevo turno</ion-button>
-            </ion-col>
-        </ion-row>
-        <ion-row>
-            <ion-col>
-                <h1>Turnos</h1>
-            </ion-col>
-        </ion-row>
-        <!-- <ion-row *ngFor="let turno of loadedTurnos">
-            <ion-col size="3">
-                <div class="ion-text-center">
-                 
-                    <h4>{{ turno.hora | date:'HH:mm' }}</h4>
-                </div>
-            </ion-col>
-            <ion-col size="6">
-                <div class="ion-text-center">
-                    
-                    <h4> {{ turno.nombre }}</h4>
-                </div>
-            </ion-col>
-            <ion-col size="3">
-                <div class="ion-text-center">
-                    
-                    <h4> ${{ turno.precio }}</h4>
-                </div>
-            </ion-col>
-        </ion-row> -->
-        
-            <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
-                <ion-reorder *ngFor="let turno of loadedTurnos">
-                    <ion-item>
-                            
-                                <h4>{{ turno.hora | date:'HH:mm' }}</h4>
-                                <h4>{{ turno.nombre }}</h4>
-                                <h4>${{ turno.precio }}</h4>
-                            
-                    </ion-item>
-                </ion-reorder>
-            </ion-reorder-group>
-    </ion-grid>
+<ion-content>
+  <section ion-text-center>
+    <ion-button expand="block" size="medium" (click)="toggleReorderGroup()">Reordenar</ion-button>
+
+  </section>
+  <ion-grid>
+    <ion-list>
+      <ion-reorder-group
+        (ionItemReorder)="doReorder($event)"
+        disabled="true"
+      >
+        <ion-item *ngFor="let turno of loadedTurnos">
+          <p>{{ turno.hora }}</p>
+          <p>{{ turno.nombre }}</p>    
+          <p>${{ turno.precio }}</p>
+          <ion-buttons slot="end" *ngIf="reorden">
+            <ion-button (click)="onDeleteTurno(turno.id)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+          <ion-reorder slot="start">
+            <ion-icon name="repeat"></ion-icon>
+          </ion-reorder>
+        </ion-item>
+      </ion-reorder-group>
+    </ion-list>
+  </ion-grid>
+ 
 </ion-content>
+
+<ion-footer class="ion-no-border ">
+  <div class="text-center">
+    <ion-button (click)="onAddTurno()">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
+  </div>
+  
+</ion-footer>

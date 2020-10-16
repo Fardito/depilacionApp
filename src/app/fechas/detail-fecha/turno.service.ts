@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { Turno } from '../detail-fecha/turno.model';
 
 @Injectable({
@@ -16,11 +16,19 @@ export class TurnoService {
 
   constructor() { }
 
-  addTurno(hora: Date, nombre: string, precio: number){
-    console.log(hora);
-    const newTurno = new Turno(hora.toString(), nombre, precio);
+  addTurno(id: string,hora: string, nombre: string, precio: number){
+    const newTurno = new Turno(id,hora, nombre, precio);
     this.turnos.pipe(take(1)).subscribe( turnos => {
       this._turnos.next(turnos.concat(newTurno));
     })
+  }
+
+  deleteTurno(id: string){
+    return this.turnos.pipe(
+      take(1),
+      tap( turnos => {
+        this._turnos.next(turnos.filter(t => t.id !== id))
+      })
+    )
   }
 }
