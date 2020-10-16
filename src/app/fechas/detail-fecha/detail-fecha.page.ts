@@ -45,7 +45,7 @@ export class DetailFechaPage implements OnInit, OnDestroy {
     });
 
     this.turnoSub = this.turnoService.turnos.subscribe( turnos => {
-      this.loadedTurnos = turnos;
+      this.loadedTurnos = turnos.filter( t => t.fechaId === this.fechaActual.id);
     })
   }
 

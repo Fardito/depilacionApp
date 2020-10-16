@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content>
-  <section ion-text-center>
+  <section ion-text-center *ngIf="loadedTurnos.length > 0">
     <ion-button expand="block" size="medium" (click)="toggleReorderGroup()">Reordenar</ion-button>
 
   </section>

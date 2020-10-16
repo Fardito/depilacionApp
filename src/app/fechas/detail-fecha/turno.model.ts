@@ -5,5 +5,6 @@ export class Turno{
         public hora: string,
         public nombre: string,
         public precio: number,
+        public fechaId: string
     ){}
 }
