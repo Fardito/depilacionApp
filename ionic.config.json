@@ -1,5 +1,8 @@
 {
   "name": "depi-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }

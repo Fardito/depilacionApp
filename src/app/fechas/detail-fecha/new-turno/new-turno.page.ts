@@ -53,7 +53,8 @@ export class NewTurnoPage implements OnInit, OnDestroy {
     const id = (Math.random() * 6 + 1).toString();
     this.turnoService.addTurno(id,this.form.value['fecha-turno'],
     this.form.value['cliente'],
-    +this.form.value['precio']);
+    +this.form.value['precio'],
+    this.fechaActual.id);
     this.navCtrl.navigateBack(
       `/fechas/detail-fecha/${this.fechaActual.id}`
     );
