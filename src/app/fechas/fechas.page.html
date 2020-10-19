@@ -26,13 +26,14 @@
             <ion-row>
                 <ion-col>
                     <div class="ion-text-center">
-                        <ion-card (click)="onOpen(fecha.id)">
+                        <ion-card>
+                            <ion-img src="https://img.huffingtonpost.com/asset/5b50d4831900002a00c6710e.jpeg?ops=scalefit_720_noupscale"></ion-img>
                             <ion-card-header>
-                                <ion-card-title> Fecha Depilacion </ion-card-title>
+                                <h1> Fecha Depilacion </h1>
+                                <h1><strong>{{ fecha.date | date }}</strong></h1>
                             </ion-card-header>
                             <ion-card-content>
-                                <h1>{{ fecha.date | date }}</h1>
-                                <ion-button>Ver Detalle</ion-button>
+                                <ion-button (click)="onOpen(fecha.id)">Ver Detalle</ion-button>
                             </ion-card-content>
                         </ion-card>
                     </div>
